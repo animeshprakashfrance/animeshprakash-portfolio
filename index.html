@@ -1,0 +1,632 @@
+<title>Animesh Prakash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ---------- tokens (single theme, by request: white + blue, no dark mode) ---------- */
+  :root{
+    --bg:#FFFFFF;
+    --bg-soft:#F2F6FC;
+    --ink:#0F1B2D;
+    --ink-soft:#4F5F78;
+    --blue:#1854E0;
+    --blue-deep:#0B2D6B;
+    --line:#E1E6F0;
+    --line-strong:#C7CFE0;
+    --max: 1040px;
+    --gutter: clamp(20px, 5vw, 64px);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Public Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3{
+    font-family:'Sora', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight:700;
+    line-height:1.1;
+    margin:0;
+    text-wrap:balance;
+  }
+  .container{
+    max-width:var(--max);
+    margin:0 auto;
+    padding-left:var(--gutter);
+    padding-right:var(--gutter);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--blue);
+    font-weight:600;
+  }
+  .mono{ font-family:'IBM Plex Mono', ui-monospace, monospace; }
+  section{ border-bottom:1px solid var(--line); }
+  section > .container{
+    padding-top:clamp(56px, 9vw, 96px);
+    padding-bottom:clamp(56px, 9vw, 96px);
+  }
+
+  /* ---------- nav ---------- */
+  header.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px; }
+  .nav-name{ font-family:'Sora', sans-serif; font-weight:700; font-size:17px; letter-spacing:0.01em; }
+  .nav-links{
+    display:none;
+    gap:clamp(14px,3vw,28px);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+  }
+  @media (min-width:680px){ .nav-links{display:flex;} }
+  .nav-links a{ text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent; padding-bottom:2px; transition:color .15s, border-color .15s;}
+  .nav-links a:hover{ color:var(--blue); border-color:var(--blue); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background-image:
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--blue) 8%, transparent) 0px, transparent 1px, transparent 88px),
+      repeating-linear-gradient(0deg, color-mix(in srgb, var(--blue) 8%, transparent) 0px, transparent 1px, transparent 88px);
+    background-position:center;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:auto auto -30% -10%;
+    width:60vw; height:60vw; max-width:640px; max-height:640px;
+    background:radial-gradient(circle, color-mix(in srgb, var(--blue) 16%, transparent) 0%, transparent 70%);
+    filter:blur(10px);
+    pointer-events:none;
+    animation:glow 12s ease-in-out infinite;
+  }
+  @keyframes glow{
+    0%,100%{ transform:translateY(0) scale(1); opacity:.9; }
+    50%{ transform:translateY(-3%) scale(1.06); opacity:1; }
+  }
+  .hero .container{ position:relative; z-index:1; padding-top:clamp(64px,12vw,120px); padding-bottom:clamp(56px,10vw,96px); }
+  .hero-eyebrow{ margin-bottom:18px; }
+  .hero h1{
+    font-size:clamp(42px, 8vw, 78px);
+    letter-spacing:-0.01em;
+    position:relative;
+    display:inline-block;
+  }
+  .hero h1::after{
+    content:"";
+    position:absolute; left:2px; right:2px; bottom:6%;
+    height:0.22em;
+    background:color-mix(in srgb, var(--blue) 16%, transparent);
+    z-index:-1;
+    transform-origin:left;
+    animation:underline 1.1s cubic-bezier(.16,.84,.44,1) .3s both;
+  }
+  @keyframes underline{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+  .hero-role{
+    font-family:'Sora', sans-serif;
+    font-weight:500;
+    font-size:clamp(17px, 2.2vw, 22px);
+    letter-spacing:0.01em;
+    color:var(--blue-deep);
+    margin-top:14px;
+  }
+  .hero-sub{
+    max-width:58ch;
+    margin-top:26px;
+    font-size:clamp(16px, 1.7vw, 19px);
+    color:var(--ink-soft);
+  }
+  .hero-cta{ margin-top:36px; display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+    text-decoration:none;
+    padding:13px 22px;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    display:inline-flex; align-items:center; gap:8px;
+    transition: background .15s, color .15s, border-color .15s, transform .15s, box-shadow .15s;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-solid{ background:var(--blue); color:#fff; border-color:var(--blue); box-shadow:0 6px 16px color-mix(in srgb, var(--blue) 28%, transparent); }
+  .btn-solid:hover{ background:var(--blue-deep); border-color:var(--blue-deep); box-shadow:0 10px 22px color-mix(in srgb, var(--blue) 34%, transparent); }
+  .btn-ghost:hover{ border-color:var(--blue); color:var(--blue); }
+
+  .stat-row{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  @media (min-width:680px){ .stat-row{ grid-template-columns:repeat(4,1fr); } }
+  .stat{ background:var(--bg-soft); padding:20px 18px; border-top:3px solid var(--blue); }
+  .stat b{
+    display:block;
+    font-family:'Sora', sans-serif; font-weight:700;
+    font-size:clamp(26px,3vw,34px);
+    color:var(--blue);
+    font-variant-numeric:tabular-nums;
+  }
+  .stat span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- section headers ---------- */
+  .section-head{ display:flex; flex-direction:column; gap:10px; margin-bottom:clamp(32px,5vw,52px); max-width:60ch; }
+  .section-head h2{ font-size:clamp(28px,4vw,40px); }
+  .section-index{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-soft); }
+
+  /* ---------- journey ---------- */
+  .route{ position:relative; }
+  .route-item{ display:grid; grid-template-columns:32px 1fr; gap:24px; position:relative; padding-bottom:clamp(28px,4vw,44px); }
+  .route-item:last-child{ padding-bottom:0; }
+  .route-item::before{
+    content:""; position:absolute; left:15px; top:34px; bottom:0; width:1px; background:var(--line-strong);
+  }
+  .route-item:last-child::before{ display:none; }
+  .route-marker{
+    width:32px; height:32px;
+    background:var(--blue); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:600;
+    box-shadow:0 3px 8px color-mix(in srgb, var(--blue) 35%, transparent);
+    z-index:1;
+  }
+  .route-eyebrow{ margin-bottom:8px; }
+  .route-title{ font-size:clamp(19px,2.4vw,23px); margin-bottom:8px; }
+  .route-body{ color:var(--ink-soft); max-width:62ch; }
+
+  /* ---------- impact ---------- */
+  .impact-grid{ display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (min-width:760px){ .impact-grid{ grid-template-columns:repeat(3,1fr); } }
+  .impact-card{ background:var(--bg); padding:clamp(24px,3vw,32px); display:flex; flex-direction:column; gap:10px; border-top:3px solid var(--blue); box-shadow:0 1px 2px rgba(15,27,45,.03); }
+  .impact-num{ font-family:'Sora', sans-serif; font-weight:700; font-size:clamp(30px,3.6vw,40px); color:var(--blue); }
+  .impact-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); }
+  .impact-desc{ color:var(--ink-soft); font-size:14.5px; }
+
+  /* ---------- global reach strip ---------- */
+  .strip{ background:var(--bg-soft); }
+  .strip .container{ padding-top:clamp(36px,5vw,52px); padding-bottom:clamp(36px,5vw,52px); }
+  .strip blockquote{
+    margin:0; padding:0;
+    font-family:'Sora', sans-serif; font-weight:500;
+    font-size:clamp(19px,2.6vw,27px);
+    line-height:1.4;
+    max-width:56ch;
+    border-left:3px solid var(--blue);
+    padding-left:24px;
+  }
+
+  /* ---------- experience ---------- */
+  .exp-list{ display:flex; flex-direction:column; }
+  .exp-row{ display:grid; grid-template-columns:1fr; gap:6px; padding:20px 0; border-top:1px solid var(--line); transition:background .15s; }
+  .exp-row:hover{ background:var(--bg-soft); }
+  .exp-row:last-child{ border-bottom:1px solid var(--line); }
+  @media (min-width:680px){ .exp-row{ grid-template-columns:200px 1fr; gap:24px; align-items:baseline; padding-left:12px; padding-right:12px; } }
+  .exp-when{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft); letter-spacing:0.02em; font-variant-numeric:tabular-nums; }
+  .exp-main b{ font-family:'Sora', sans-serif; font-weight:600; font-size:18px; }
+  .exp-main .exp-role{ color:var(--ink-soft); font-size:14.5px; margin-top:2px; }
+
+  /* ---------- expertise ---------- */
+  .exp-grid{ display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (min-width:680px){ .exp-grid{ grid-template-columns:repeat(2,1fr);} }
+  @media (min-width:980px){ .exp-grid{ grid-template-columns:repeat(3,1fr);} }
+  .exp-card{ background:var(--bg); padding:clamp(22px,2.6vw,28px); display:flex; flex-direction:column; gap:10px; border-top:3px solid var(--line-strong); transition:border-color .2s; }
+  .exp-card:hover{ border-top-color:var(--blue); }
+  .exp-card h3{ font-size:18px; }
+  .exp-card p{ margin:0; color:var(--ink-soft); font-size:14.5px; }
+  .exp-tag{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--blue); }
+
+  /* ---------- credentials ---------- */
+  .cred-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+  .cred-chip{ border:1px solid var(--line-strong); background:var(--bg-soft); padding:8px 14px; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.03em; color:var(--ink-soft); }
+  .edu-block{ margin-top:36px; }
+  .edu-block .route-item{ padding-bottom:0; }
+  .edu-block .route-item::before{ display:none; }
+
+  /* ---------- road ahead / ambition ---------- */
+  #ambition p.reveal{ color:var(--ink-soft); font-size:16px; }
+
+  /* ---------- board / advisory ---------- */
+  .advisory{ background:var(--blue-deep); color:#fff; border-bottom:1px solid var(--blue-deep); position:relative; overflow:hidden; }
+  .advisory::before{
+    content:"";
+    position:absolute; inset:-20% -10% auto auto;
+    width:50vw; height:50vw; max-width:520px; max-height:520px;
+    background:radial-gradient(circle, color-mix(in srgb, #fff 14%, transparent) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .advisory .container{ position:relative; z-index:1; }
+  .advisory .eyebrow{ color:#9DBBFF; }
+  .advisory h2{ color:#fff; max-width:20ch; }
+  .advisory p{ color:#C7D6F5; max-width:64ch; }
+  .advisory .btn{ border-color:#fff; color:#fff; }
+  .advisory .btn-solid{ background:#fff; color:var(--blue-deep); border-color:#fff; box-shadow:0 6px 16px rgba(0,0,0,.18); }
+  .advisory .btn-solid:hover{ background:#EAF0FF; }
+  .advisory .board-list{ margin-top:28px; display:flex; flex-wrap:wrap; gap:10px; }
+  .advisory .board-chip{ border:1px solid rgba(255,255,255,.35); padding:8px 14px; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.03em; color:#fff; }
+
+  /* ---------- contact / footer ---------- */
+  footer .container{ padding-top:clamp(56px,8vw,88px); padding-bottom:clamp(40px,6vw,56px); }
+  .contact-top h2{ font-size:clamp(30px,4.4vw,44px); max-width:16ch; }
+  .contact-links{ margin-top:28px; display:flex; flex-wrap:wrap; gap:14px; }
+  .meta-row{
+    margin-top:56px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px;
+    font-size:13.5px; color:var(--ink-soft);
+  }
+  .meta-row .langs{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.02em; }
+
+  /* ---------- location links ---------- */
+  .loc-link{
+    color:inherit;
+    text-decoration:underline;
+    text-decoration-color:color-mix(in srgb, var(--blue) 45%, transparent);
+    text-underline-offset:3px;
+    transition:color .15s, text-decoration-color .15s;
+  }
+  .loc-link:hover{ color:var(--blue); text-decoration-color:var(--blue); }
+
+  /* ---------- reveal ---------- */
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
+
+<header class="site-nav">
+  <div class="container nav-row">
+    <div class="nav-name">Animesh Prakash</div>
+    <nav class="nav-links">
+      <a href="#journey">Journey</a>
+      <a href="#impact">Impact</a>
+      <a href="#experience">Experience</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#ambition">The Road Ahead</a>
+      <a href="#board">Board &amp; Advisory</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow eyebrow">Chartered Engineer · Iron &amp; Steel and Building Materials Manufacturing</div>
+    <h1>Animesh Prakash</h1>
+    <div class="hero-role">Engineering performance into the world's iron &amp; steel and mineral wool operations</div>
+    <p class="hero-sub">Fifteen years. Four countries. A Chartered Engineer and Lean Six Sigma Black Belt with £5M+ in measurable plant value delivered — leading iron &amp; steel and mineral wool (building materials) operations across India, the UAE, and the UK — and now in France.</p>
+    <div class="hero-cta">
+      <a class="btn btn-solid" href="#journey">View the Journey ↓</a>
+      <a class="btn btn-ghost" href="mailto:contact@animeshprakash.com">Email Animesh</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/prakashanimesh" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><b class="count" data-target="15">0</b><span>Years, Global</span></div>
+      <div class="stat"><b class="count" data-target="4">0</b><span>Countries</span></div>
+      <div class="stat"><b>£5M+</b><span>Value Delivered</span></div>
+      <div class="stat"><b class="count" data-target="21">0</b><span>Furnaces</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-index">01 — Origin to Present</div>
+      <h2>A career built across four countries</h2>
+    </div>
+    <div class="route">
+
+      <div class="route-item reveal">
+        <div class="route-marker">01</div>
+        <div>
+          <div class="route-eyebrow eyebrow"><a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Varanasi%2C+India" target="_blank" rel="noopener">Varanasi</a> &amp; <a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Chennai%2C+India" target="_blank" rel="noopener">Chennai</a>, India</div>
+          <div class="route-title">The foundation</div>
+          <div class="route-body">Born in Varanasi, in northern India, in 1990; began his schooling there, then moved to Chennai, in southern India, for college — a B.Tech in Chemical Engineering at Sathyabama University, graduating 2012 — the foundation for everything that followed.</div>
+        </div>
+      </div>
+
+      <div class="route-item reveal">
+        <div class="route-marker">02</div>
+        <div>
+          <div class="route-eyebrow eyebrow"><a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kharagpur%2C+West+Bengal%2C+India" target="_blank" rel="noopener">West Bengal</a> &amp; <a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Jajpur%2C+Odisha%2C+India" target="_blank" rel="noopener">Odisha</a>, India · 2012–2017</div>
+          <div class="route-title">Blast furnace operations</div>
+          <div class="route-body">Started as a Graduate Trainee at Rashmi Metaliks in West Bengal, moving through shift management, then to Visa Steel Limited in Odisha — five years of blast furnace operations and process control, capped by a stint in the Director's office gaining techno-commercial exposure: procurement, supplier negotiation, and cost analysis alongside the technical work.</div>
+        </div>
+      </div>
+
+      <div class="route-item reveal">
+        <div class="route-marker">03</div>
+        <div>
+          <div class="route-eyebrow eyebrow"><a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Silvassa%2C+India" target="_blank" rel="noopener">Silvassa</a>, India · 2017–2019</div>
+          <div class="route-title">The pivot to stone wool</div>
+          <div class="route-body">Joined Rockwool India as Production &amp; Process Head — the move from iron &amp; steel into mineral wool (building materials) manufacturing that would define the next decade.</div>
+        </div>
+      </div>
+
+      <div class="route-item reveal">
+        <div class="route-marker">04</div>
+        <div>
+          <div class="route-eyebrow eyebrow"><a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Fujairah%2C+UAE" target="_blank" rel="noopener">Fujairah</a>, UAE · 2019–2022</div>
+          <div class="route-title">Process Engineer to Department Manager</div>
+          <div class="route-body">Joined Fujairah Rockwool as Process Engineer across hot end and cold end, then rose to Department Manager — running a 180+ member plant team, holding the line on plant KPIs across efficiency, safety and output, and delivering energy and recycling initiatives worth over 1.7M AED in combined savings.</div>
+        </div>
+      </div>
+
+      <div class="route-item reveal">
+        <div class="route-marker">05</div>
+        <div>
+          <div class="route-eyebrow eyebrow"><a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Bridgend%2C+Wales%2C+UK" target="_blank" rel="noopener">Bridgend, Wales</a>, UK · 2022–2025</div>
+          <div class="route-title">Process Engineer &amp; Hot End Manager</div>
+          <div class="route-body">Joined as Process Engineer across three UK manufacturing lines, promoted to Hot End Manager, then Process Lead — optimizing resin and melting materials for £1.6M in annual value.</div>
+        </div>
+      </div>
+
+      <div class="route-item reveal">
+        <div class="route-marker">06</div>
+        <div>
+          <div class="route-eyebrow eyebrow"><a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=France" target="_blank" rel="noopener">France</a> · 2025–Present</div>
+          <div class="route-title">Senior Process Engineer, Saint-Gobain</div>
+          <div class="route-body">Now on Saint-Gobain's central team — supporting factories and R&amp;D worldwide, and leading greenfield and brownfield project work, from design validation through Factory Acceptance Tests (FATs) — the fourth country, and the widest reach yet.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="impact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-index">02 — By the Numbers</div>
+      <h2>Impact, not just tenure</h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card reveal">
+        <div class="impact-num">£1.6M+</div>
+        <div class="impact-label">Annual value delivered</div>
+        <p class="impact-desc">Optimized resin utilization and melting materials across three manufacturing lines in the UK.</p>
+      </div>
+      <div class="impact-card reveal">
+        <div class="impact-num">7% / 700K AED</div>
+        <div class="impact-label">Efficiency gain &amp; annual savings</div>
+        <p class="impact-desc">Led energy optimization across LPG, LOX, and Coke, plus refractory projects, in the UAE.</p>
+      </div>
+      <div class="impact-card reveal">
+        <div class="impact-num">16% / 1M AED</div>
+        <div class="impact-label">Recycling increase &amp; total savings</div>
+        <p class="impact-desc">Initiated and scaled a recycling program supporting sustainability and cost reduction in the UAE.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="container reveal">
+    <blockquote>Process support has also extended to factories in the US, Canada, Poland, Romania, the Czech Republic, and across Asia.</blockquote>
+  </div>
+</div>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-index">03 — Career Progression</div>
+      <h2>Experience</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-row reveal">
+        <div class="exp-when mono">Mar 2025 — Present</div>
+        <div class="exp-main"><b>Saint-Gobain</b><div class="exp-role">Senior Process Engineer, Central Team — Global Factory &amp; R&amp;D Support, Greenfield/Brownfield Design Validation &amp; FATs · <a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=France" target="_blank" rel="noopener">France</a></div></div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="exp-when mono">Oct 2022 — 2025</div>
+        <div class="exp-main"><b>ROCKWOOL UK (ROCKWOOL Group)</b><div class="exp-role">Process Engineer → Hot End Manager → Process Lead · <a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Bridgend%2C+Wales%2C+UK" target="_blank" rel="noopener">Bridgend, Wales, UK</a></div></div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="exp-when mono">Jul 2019 — Sep 2022</div>
+        <div class="exp-main"><b>Fujairah Rockwool Factory</b><div class="exp-role">Process Engineer (Hot End &amp; Cold End) → Department Manager · <a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Fujairah%2C+UAE" target="_blank" rel="noopener">Fujairah, UAE</a></div></div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="exp-when mono">Nov 2017 — Jun 2019</div>
+        <div class="exp-main"><b>Rockwool India Pvt. Ltd.</b><div class="exp-role">Production &amp; Process Head · <a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Silvassa%2C+India" target="_blank" rel="noopener">Silvassa, India</a></div></div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="exp-when mono">Oct 2014 — Nov 2017</div>
+        <div class="exp-main"><b>Visa Steel Limited</b><div class="exp-role">Engineer, Blast Furnace Operations &amp; Director's Office (Techno-Commercial) · <a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Jajpur%2C+Odisha%2C+India" target="_blank" rel="noopener">Jajpur, Odisha, India</a></div></div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="exp-when mono">May 2012 — Oct 2014</div>
+        <div class="exp-main"><b>Rashmi Metaliks Ltd.</b><div class="exp-role">Graduate Trainee → Assistant Engineer, Blast Furnace Operations (Shift Management) · <a class="loc-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kharagpur%2C+West+Bengal%2C+India" target="_blank" rel="noopener">Kharagpur, West Bengal, India</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="expertise">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-index">04 — Technical Range</div>
+      <h2>Expertise</h2>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <div class="exp-tag">STONE / MINERAL WOOL MANUFACTURING</div>
+        <h3>Hot end &amp; cold end process engineering</h3>
+        <p>Hands-on across 21+ furnaces, fiberizing &amp; forming, binder &amp; resin systems, in building materials (stone/mineral wool) manufacturing.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-tag">IRON &amp; STEEL / BLAST FURNACE OPERATIONS</div>
+        <h3>Heavy industry &amp; blast furnace operations</h3>
+        <p>250m³ and 215m³ blast furnaces, raw material handling, refractory, iron and steel process engineering.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-tag">LEAN SIX SIGMA / CONTINUOUS IMPROVEMENT</div>
+        <h3>Continuous improvement (CI)</h3>
+        <p>Lean Six Sigma Black Belt; OEE, 5S, World Class Manufacturing (WCM), root-cause and process variation analysis.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-tag">PROCESS CONTROL / SPC</div>
+        <h3>Process control &amp; data analysis</h3>
+        <p>Process Control Monitoring (PCM), Statistical Process Control (SPC), A3 &amp; Engineering Change Notes, technical benchmarking.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-tag">NEW PRODUCT DEVELOPMENT (NPD)</div>
+        <h3>New product development</h3>
+        <p>Fire Stopper, Fire Boards, hydroponics substrates, high-compressive-strength and low-thermal-conductivity products.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-tag">QHSE / COMPLIANCE</div>
+        <h3>Quality, safety &amp; compliance</h3>
+        <p>ISO 9001:2015, ISO 14001:2015, OHSAS 18001:2007; HSE leadership and plant safety programs.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-tag">REFRACTORY, CAPEX &amp; CAPITAL PROJECTS</div>
+        <h3>Refractory, CAPEX &amp; capital project engineering</h3>
+        <p>Refractory design, technical procurement, erection &amp; commissioning, and greenfield/brownfield project work — design validation and Factory Acceptance Tests (FATs) — across capital projects in four countries.</p>
+      </div>
+    </div>
+
+    <div class="edu-block">
+      <div class="route-item reveal" style="grid-template-columns:32px 1fr;">
+        <div class="route-marker">Ed</div>
+        <div>
+          <div class="route-eyebrow eyebrow">Sathyabama University, Chennai · 2012</div>
+          <div class="route-title" style="font-size:19px;">B.Tech, Chemical Engineering</div>
+        </div>
+      </div>
+      <div class="cred-row reveal">
+        <div class="cred-chip">Chartered Engineer (CEng)</div>
+        <div class="cred-chip">Lean Six Sigma Black Belt</div>
+        <div class="cred-chip">Lean Six Sigma Green Belt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ambition">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-index">05 — The Road Ahead</div>
+      <h2>Building toward global leadership</h2>
+    </div>
+    <p class="reveal" style="max-width:68ch">Fifteen years of adding scope at every step — technical, then people, then multi-site, then multi-country — is the pattern, not the finish line. The next challenge: P&amp;L ownership and cross-functional leadership at a global manufacturing organization — building, over the next decade, toward broader executive leadership.</p>
+    <div class="cred-row reveal">
+      <div class="cred-chip">General / Executive Management</div>
+      <div class="cred-chip">Global Manufacturing Leadership</div>
+    </div>
+  </div>
+</section>
+
+<section class="advisory" id="board">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Beyond the plant floor</div>
+      <h2>Board, advisory &amp; non-profit leadership</h2>
+    </div>
+    <p class="reveal">Fifteen years leading iron &amp; steel and building materials operations across four countries built the judgment boards and advisory mandates depend on — in operations, risk, continuous improvement, and cross-border strategy. Animesh is pursuing executive board, board chairman, and advisory appointments, alongside non-profit board service and select consulting work through a family-led advisory practice he is building.</p>
+    <div class="board-list reveal">
+      <div class="board-chip">Executive Board Member</div>
+      <div class="board-chip">Board Chairman</div>
+      <div class="board-chip">Advisory &amp; Consulting</div>
+      <div class="board-chip">Family Advisory Practice (Founder)</div>
+      <div class="board-chip">Non-Profit Board Service</div>
+    </div>
+    <div class="hero-cta reveal" style="margin-top:28px;">
+      <a class="btn btn-solid" href="mailto:contact@animeshprakash.com">Start a Conversation</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="contact-top reveal">
+      <div class="eyebrow">Get in touch</div>
+      <h2>Let's talk.</h2>
+      <div class="contact-links">
+        <a class="btn btn-solid" href="mailto:contact@animeshprakash.com">contact@animeshprakash.com</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/prakashanimesh" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="meta-row">
+      <div>Based in France · Originally from Varanasi, India</div>
+      <div class="langs">EN · HI · BN</div>
+    </div>
+    <div class="meta-row" style="margin-top:0; border-top:none; padding-top:0;">
+      <div>© 2026 Animesh Prakash. Off the clock: cooking, film, and a long-standing habit of reading history and biographies.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // scroll reveal
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('in'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function(el){ io.observe(el); });
+    }
+
+    // count-up stats
+    var counts = document.querySelectorAll('.count');
+    function animateCount(el){
+      var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+      if(reduced){ el.textContent = target; return; }
+      var start = null;
+      var duration = 1100;
+      function step(ts){
+        if(start === null) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if(progress < 1){ requestAnimationFrame(step); }
+      }
+      requestAnimationFrame(step);
+    }
+    if('IntersectionObserver' in window && counts.length){
+      var cio = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            animateCount(entry.target);
+            cio.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.6 });
+      counts.forEach(function(el){ cio.observe(el); });
+    } else {
+      counts.forEach(function(el){ el.textContent = el.getAttribute('data-target'); });
+    }
+  })();
+</script>
