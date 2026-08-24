@@ -61,7 +61,7 @@
     "New product development", "Capital projects", "Factory Acceptance Testing", "QHSE"
   ],
   "description": "Chartered Engineer and Lean Six Sigma Black Belt with fifteen years across India, the UAE, the United Kingdom and France, delivering over £5M in measurable plant value in iron & steel and mineral wool manufacturing.",
-  "image": "https://animeshprakash.com/og-image.png",
+  "image": "https://animeshprakash.com/portrait.webp",
   "seeks": { "@type": "Demand", "name": "General and executive management, board and advisory appointments in global manufacturing" }
 }
 </script>
@@ -266,6 +266,30 @@ p:last-child{margin-bottom:0;}
 @keyframes float1{0%,100%{transform:translate3d(0,0,0) scale(1);}50%{transform:translate3d(2%,-4%,0) scale(1.07);}}
 @keyframes float2{0%,100%{transform:translate3d(0,0,0) scale(1);}50%{transform:translate3d(-3%,4%,0) scale(1.1);}}
 .hero .container{position:relative; z-index:2; padding-top:clamp(64px,10vw,116px); padding-bottom:clamp(56px,8vw,92px);}
+.hero-inner{display:grid; grid-template-columns:1fr; gap:clamp(28px,4vw,44px); align-items:center;}
+@media (min-width:980px){ .hero-inner{grid-template-columns:minmax(0,1.42fr) minmax(0,.58fr);} }
+@media (min-width:1280px){ .hero-inner{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);} }
+.portrait-wrap{position:relative; justify-self:center; align-self:center; width:100%; display:none;}
+@media (min-width:980px){ .portrait-wrap{display:block;} }
+.portrait-wrap::before{
+  content:""; position:absolute; left:50%; bottom:6%; transform:translateX(-50%);
+  width:118%; max-width:440px; aspect-ratio:1; border-radius:50%;
+  background:radial-gradient(circle, rgba(23,80,224,.16) 0%, rgba(23,80,224,.05) 46%, transparent 68%);
+  filter:blur(4px); z-index:0;
+}
+.portrait{
+  position:relative; z-index:1; display:block; width:min(100%,330px); height:auto; margin:0 auto;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 76%,rgba(0,0,0,.55) 92%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 76%,rgba(0,0,0,.55) 92%,transparent 100%);
+  filter:drop-shadow(0 26px 40px rgba(10,20,37,.16));
+}
+.avatar{
+  display:block; width:112px; height:112px; border-radius:50%; margin-bottom:24px;
+  object-fit:cover; object-position:50% 12%;
+  background:radial-gradient(circle at 50% 30%, #E8EFFB 0%, #F5F8FD 70%);
+  box-shadow:0 0 0 1px var(--line-2), 0 14px 30px -14px rgba(10,20,37,.35);
+}
+@media (min-width:980px){ .avatar{display:none;} }
 .hero h1{
   font-size:clamp(46px,9.2vw,104px); font-weight:800; letter-spacing:-.035em; line-height:.96;
 }
@@ -274,7 +298,7 @@ p:last-child{margin-bottom:0;}
 .hero h1 .ln:nth-child(2) > span{animation-delay:.09s;}
 @keyframes riseIn{to{transform:none;}}
 .hero h1 .accent{
-  background:linear-gradient(96deg,var(--blue) 0%,var(--blue-hi) 45%,var(--amber) 115%);
+  background:linear-gradient(96deg,var(--blue) 0%,var(--blue-hi) 62%,var(--amber) 155%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
 .hero-role{
@@ -283,7 +307,8 @@ p:last-child{margin-bottom:0;}
   font-size:clamp(19px,2.5vw,27px); line-height:1.3; color:var(--ink-2);
 }
 .hero-sub{margin-top:24px; max-width:58ch; color:var(--muted); font-size:clamp(17px,1.9vw,19.5px); line-height:1.6;}
-.hero-cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:34px;}
+.hero-cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:34px;}
+.hero .hero-cta .btn{padding:13px 19px; font-size:15px;}
 .hero-foot{
   display:flex; flex-wrap:wrap; gap:10px 24px; margin-top:36px;
   font-family:'IBM Plex Mono',monospace; font-size:13.5px; letter-spacing:.06em;
@@ -631,7 +656,9 @@ p:last-child{margin-bottom:0;}
 /* ---------- print / CV ---------- */
 @media print{
   @page{margin:14mm;}
-  .nav,.drawer,.progress,.totop,.hero-bg,.hero-cta,.contact-row,.copybtn,.burger,.orgstrip{display:none !important;}
+  .nav,.drawer,.progress,.totop,.hero-bg,.hero-cta,.contact-row,.copybtn,.burger,.orgstrip,.portrait-wrap{display:none !important;}
+  .avatar{display:block !important; width:78px; height:78px; box-shadow:none; border:1px solid #ccc;}
+  .hero-inner{display:block;}
   body{font-size:10.5pt; line-height:1.45; color:#000; background:#fff;}
   .section > .container{padding:14px 0 !important;}
   .container{max-width:none; padding:0;}
@@ -697,12 +724,15 @@ p:last-child{margin-bottom:0;}
     <div class="hero-glow b"></div>
   </div>
   <div class="container">
+   <div class="hero-inner">
+    <div>
+    <img class="avatar" src="avatar.webp" width="480" height="480" alt="Animesh Prakash" fetchpriority="high">
     <h1>
       <span class="ln"><span>Animesh</span></span>
       <span class="ln"><span class="accent">Prakash</span></span>
     </h1>
     <p class="hero-role">Engineering performance into heavy industry (iron &amp; steel) and building materials (mineral wool operations).</p>
-    <p class="hero-sub">Fifteen years. Four countries. A Chartered Engineer and Lean Six Sigma Black Belt with &pound;5M+ in measurable plant value delivered &mdash; leading operations across India, the UAE and the United Kingdom, and now in France.</p>
+    <p class="hero-sub">Fifteen years. Four countries. A Chartered Engineer and Lean Six Sigma Black Belt with &pound;5M+ in measurable plant value delivered, leading operations across India, the UAE and the United Kingdom &mdash; and now in France.</p>
     <div class="hero-cta">
       <a class="btn btn-solid" href="#journey">Explore the record
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
@@ -718,6 +748,11 @@ p:last-child{margin-bottom:0;}
       <span>Iron &amp; Steel</span><i>/</i>
       <span>Mineral Wool</span>
     </div>
+    </div>
+    <div class="portrait-wrap">
+      <img class="portrait" src="portrait.webp" width="800" height="1000" alt="Animesh Prakash, Chartered Engineer" fetchpriority="high">
+    </div>
+   </div>
   </div>
 </section>
 
@@ -759,7 +794,7 @@ p:last-child{margin-bottom:0;}
         <div class="node-body">
           <div class="node-place"><a href="https://www.google.com/maps/search/?api=1&amp;query=Varanasi%2C+India" target="_blank" rel="noopener">Varanasi</a> &amp; <a href="https://www.google.com/maps/search/?api=1&amp;query=Chennai%2C+India" target="_blank" rel="noopener">Chennai</a>, India</div>
           <h3 class="node-title">The Foundation</h3>
-          <p class="node-text">Born in Varanasi, in northern India, in 1990; began his schooling there, then moved to Chennai, in southern India, for college &mdash; a B.Tech in Chemical Engineering at Sathyabama University, graduating 2012 &mdash; the foundation for everything that followed.</p>
+          <p class="node-text">Born in Varanasi, in northern India, in 1990. Schooling began there, before a move to Chennai, in southern India, for college &mdash; a B.Tech in Chemical Engineering at Sathyabama University, graduating in 2012 &mdash; the foundation for everything that followed.</p>
         </div>
       </article>
 
@@ -769,7 +804,7 @@ p:last-child{margin-bottom:0;}
         <div class="node-body">
           <div class="node-place"><a href="https://www.google.com/maps/search/?api=1&amp;query=Kharagpur%2C+West+Bengal%2C+India" target="_blank" rel="noopener">West Bengal</a> &amp; <a href="https://www.google.com/maps/search/?api=1&amp;query=Jajpur%2C+Odisha%2C+India" target="_blank" rel="noopener">Odisha</a>, India</div>
           <h3 class="node-title">Blast Furnace Operations</h3>
-          <p class="node-text">Started as a Graduate Trainee at Rashmi Metaliks in West Bengal, moving through shift management, then to Visa Steel Limited in Odisha &mdash; five years of blast furnace operations and process control, leading a team of 70+ across 250m&sup3; and 215m&sup3; furnaces, and capped by a stint in the Director&rsquo;s office gaining techno-commercial exposure: procurement, supplier negotiation and cost analysis alongside the technical work.</p>
+          <p class="node-text">Started as a Graduate Trainee at Rashmi Metaliks in West Bengal, moved through shift management, then on to Visa Steel Limited in Odisha &mdash; five years of blast furnace operations and process control, leading a team of 70+ across 250m&sup3; and 215m&sup3; furnaces, and capped by a stint in the Director&rsquo;s office that added techno-commercial exposure: procurement, supplier negotiation and cost analysis alongside the technical work.</p>
         </div>
       </article>
 
@@ -809,7 +844,7 @@ p:last-child{margin-bottom:0;}
         <div class="node-body">
           <div class="node-place"><a href="https://www.google.com/maps/search/?api=1&amp;query=France" target="_blank" rel="noopener">France</a></div>
           <h3 class="node-title">Senior Process Engineer, Saint-Gobain</h3>
-          <p class="node-text">Now on Saint-Gobain&rsquo;s central team &mdash; delivering process support to factories globally and supporting R&amp;D, and leading greenfield and brownfield project work from design validation through Factory Acceptance Tests (FATs) &mdash; the fourth country, and the widest reach yet.</p>
+          <p class="node-text">Now on Saint-Gobain&rsquo;s central team &mdash; delivering process support to factories worldwide, supporting R&amp;D, and leading greenfield and brownfield project work from design validation through Factory Acceptance Tests (FATs) &mdash; the fourth country, and the widest reach yet.</p>
         </div>
       </article>
     </div>
@@ -933,7 +968,7 @@ p:last-child{margin-bottom:0;}
         <div class="exp-when">Mar 2025 &mdash; Present</div>
         <div>
           <b class="exp-org">Saint-Gobain</b>
-          <div class="exp-role">Senior Process Engineer, Central Team &mdash; process support to factories globally and support to R&amp;D; greenfield/brownfield design validation and Factory Acceptance Tests</div>
+          <div class="exp-role">Senior Process Engineer, Central Team &mdash; process support to factories worldwide and to R&amp;D; greenfield/brownfield design validation and Factory Acceptance Tests</div>
         </div>
         <div class="exp-flag">France</div>
       </div>
@@ -941,7 +976,7 @@ p:last-child{margin-bottom:0;}
         <div class="exp-when">Oct 2022 &mdash; 2025</div>
         <div>
           <b class="exp-org">ROCKWOOL UK &mdash; ROCKWOOL Group</b>
-          <div class="exp-role">Process Engineer, then Hot End Manager &amp; Process Lead (held together) &mdash; hot end area, CAPEX projects and process trials</div>
+          <div class="exp-role">Process Engineer, then Hot End Manager and Process Lead concurrently &mdash; hot end area, CAPEX projects and process trials</div>
         </div>
         <div class="exp-flag">Bridgend, Wales</div>
       </div>
@@ -1001,21 +1036,21 @@ p:last-child{margin-bottom:0;}
         <div class="xicon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10l-1.4 5.6a3 3 0 0 0 .5 2.6l2.4 3.2A3 3 0 0 1 16.1 19H7.9a3 3 0 0 1-2.4-4.6l2.4-3.2a3 3 0 0 0 .5-2.6L7 3Z"/><path d="M9.5 15h5"/></svg></div>
         <span class="xtag">Iron &amp; steel / blast furnace operations</span>
         <h3>Heavy Industry &amp; Blast Furnace Operations</h3>
-        <p>250m&sup3; and 215m&sup3; blast furnaces, raw material handling, refractory, and iron and steel process engineering, leading teams of 70+.</p>
+        <p>250m&sup3; and 215m&sup3; blast furnaces, raw material handling, refractory, and iron and steel process engineering &mdash; leading teams of 70+.</p>
       </article>
 
       <article class="xcard reveal" data-d="2">
         <div class="xicon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18"/><path d="M6 20v-6M11 20V8M16 20v-9M21 20V4"/></svg></div>
         <span class="xtag">Lean Six Sigma / continuous improvement</span>
         <h3>Continuous Improvement</h3>
-        <p>Lean Six Sigma Black Belt; OEE, 5S, World Class Manufacturing (WCM), root-cause and process variation analysis.</p>
+        <p>Lean Six Sigma Black Belt; OEE, 5S, World Class Manufacturing (WCM), root-cause and process-variation analysis.</p>
       </article>
 
       <article class="xcard reveal">
         <div class="xicon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15l4.5-5 3.5 3.5L15 7l6 8"/><path d="M3 20h18"/><circle cx="7.5" cy="10" r="1.2"/></svg></div>
         <span class="xtag">Process control / SPC</span>
         <h3>Process Control &amp; Data Analysis</h3>
-        <p>Process Control Monitoring (PCM), Statistical Process Control (SPC), A3 problem solving, Engineering Change Notes and technical benchmarking.</p>
+        <p>Process Control Monitoring (PCM), Statistical Process Control (SPC), A3 problem-solving, Engineering Change Notes and technical benchmarking.</p>
       </article>
 
       <article class="xcard reveal" data-d="1">
@@ -1050,7 +1085,7 @@ p:last-child{margin-bottom:0;}
         <div class="xicon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h12M3 12h18M3 18h9"/><circle cx="19" cy="6" r="2"/><circle cx="16" cy="18" r="2"/></svg></div>
         <span class="xtag">Techno-commercial</span>
         <h3>Procurement &amp; Cost Analysis</h3>
-        <p>Supplier negotiation, technical procurement and cost analysis from a director&rsquo;s-office posting &mdash; the commercial half of engineering decisions.</p>
+        <p>Supplier negotiation, technical procurement and cost analysis from a posting in the director&rsquo;s office &mdash; the commercial half of engineering decisions.</p>
       </article>
     </div>
 
@@ -1060,13 +1095,14 @@ p:last-child{margin-bottom:0;}
         <h3>B.Tech, Chemical Engineering</h3>
         <div class="sub">Sathyabama University, Chennai &middot; 2012</div>
         <div class="chips">
-          <span class="chip">Chemical Engineering</span>
+          <span class="chip">Class of 2012</span>
+          <span class="chip">Chennai, India</span>
         </div>
       </div>
       <div class="credbox reveal" data-d="1">
         <span class="eyebrow">Certifications &amp; standards</span>
         <h3>Chartered Engineer (CEng)</h3>
-        <div class="sub">Plus Lean Six Sigma at Black and Green Belt level, and working command of the core management-system standards.</div>
+        <div class="sub">With Lean Six Sigma at Black and Green Belt level, and a working command of the core management-system standards.</div>
         <div class="chips">
           <span class="chip">Lean Six Sigma Black Belt</span>
           <span class="chip">Lean Six Sigma Green Belt</span>
@@ -1096,7 +1132,7 @@ p:last-child{margin-bottom:0;}
       </div>
       <ol class="ladder reveal" data-d="1">
         <li><b>Technical Depth</b><span>Blast furnace and mineral wool process engineering, hands-on.</span></li>
-        <li><b>People Leadership</b><span>Shift teams to a 180+ member plant organisation.</span></li>
+        <li><b>People Leadership</b><span>From shift teams to a 180+ member plant organisation.</span></li>
         <li><b>Multi-Site Scope</b><span>Three UK lines, then central support across continents.</span></li>
         <li><b>Commercial Edge</b><span>Procurement, negotiation and cost analysis alongside the engineering.</span></li>
         <li><b>Next: P&amp;L Ownership</b><span>General management of a plant, region or business unit.</span></li>
@@ -1113,9 +1149,9 @@ p:last-child{margin-bottom:0;}
     </div>
     <div class="board-grid">
       <div class="reveal">
-        <p class="lede" style="color:rgba(255,255,255,.88);">Fifteen years leading heavy industry and building-materials operations across four countries built the judgment boards and advisory mandates depend on &mdash; in operations, risk, continuous improvement and cross-border strategy.</p>
+        <p class="lede" style="color:rgba(255,255,255,.88);">Fifteen years leading heavy industry and building-materials operations across four countries built the kind of judgment that boards and advisory mandates depend on &mdash; in operations, risk, continuous improvement and cross-border strategy.</p>
         <p style="margin-top:18px;">The ambition now is to put that experience to work beyond the plant floor: a seat at the board table, and advising industrial businesses on the problems he has spent a career solving. He is also building a family-led consulting group, and would welcome non-profit board service where engineering and education meet.</p>
-        <p style="margin-top:14px;">Conversations are open on all of it.</p>
+        <p style="margin-top:14px;">Conversations are welcome on all of it.</p>
         <div class="hero-cta" style="margin-top:28px;">
           <a class="btn btn-light" href="mailto:contact@animeshprakash.com?subject=Board%20or%20advisory%20enquiry">Start a conversation</a>
         </div>
@@ -1126,7 +1162,7 @@ p:last-child{margin-bottom:0;}
           <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.2-3 7.6-7.5 9-4.5-1.4-7.5-4.8-7.5-9V6L12 3Z"/></svg><div><b>Board Seats &mdash; Executive &amp; Non-Executive</b><em>Operations, manufacturing performance and risk oversight.</em></div></li>
           <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.2-3 7.6-7.5 9-4.5-1.4-7.5-4.8-7.5-9V6L12 3Z"/></svg><div><b>Board Chairmanship</b><em>Governance and strategic direction for industrial businesses.</em></div></li>
           <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.2-3 7.6-7.5 9-4.5-1.4-7.5-4.8-7.5-9V6L12 3Z"/></svg><div><b>Advising Industrial Businesses</b><em>Building materials, plant equipment and process turnaround.</em></div></li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.2-3 7.6-7.5 9-4.5-1.4-7.5-4.8-7.5-9V6L12 3Z"/></svg><div><b>A Family-Led Consulting Group</b><em>Building-materials solutions, equipment and executive search &mdash; in build.</em></div></li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.2-3 7.6-7.5 9-4.5-1.4-7.5-4.8-7.5-9V6L12 3Z"/></svg><div><b>A Family-Led Consulting Group</b><em>Building-materials solutions, equipment and executive search &mdash; currently being built.</em></div></li>
           <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.2-3 7.6-7.5 9-4.5-1.4-7.5-4.8-7.5-9V6L12 3Z"/></svg><div><b>Non-Profit Board Service</b><em>Education, engineering skills and community initiatives.</em></div></li>
         </ul>
       </div>
