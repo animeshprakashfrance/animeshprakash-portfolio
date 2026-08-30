@@ -9,6 +9,7 @@ self-contained (all CSS and JS inline; only Google Fonts is loaded externally).
 |---|---|
 | `index.html` | The site |
 | `404.html` | Branded not-found page |
+| `avatar.webp`, `portrait.webp`, `board-portrait.webp` | Photography (hero avatar, hero portrait, Board & Advisory portrait) |
 | `og-image.png` | 1200×630 share card (LinkedIn, WhatsApp, X, Slack previews) |
 | `robots.txt` | Search-engine directives |
 | `sitemap.xml` | Sitemap |
